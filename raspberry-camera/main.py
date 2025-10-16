@@ -4,6 +4,7 @@ import uvicorn
 from app.routes import router
 from app.camera import camera
 from contextlib import asynccontextmanager
+from fastapi.middleware.cors import CORSMiddleware
 
 
 @asynccontextmanager
@@ -16,6 +17,15 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(router)
 
 
@@ -30,3 +40,4 @@ if __name__ == "__main__":
         asyncio.run(main())
     except KeyboardInterrupt:
         print("Server stopped by user.")
+        exit()

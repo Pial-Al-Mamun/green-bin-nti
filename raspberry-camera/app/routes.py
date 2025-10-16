@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Response
 from fastapi.responses import StreamingResponse
-from typing import Never
 from app.stream import gen_frames
 from app.camera import camera
+import sys
 
 router = APIRouter()
 
@@ -20,8 +20,3 @@ async def snapshot() -> Response:
     if frame:
         return Response(content=frame, media_type="image/jpeg")
     return Response(status_code=404, content="Camera frame not available.")
-
-
-@router.get("/exit")
-async def close() -> Never:
-    raise KeyboardInterrupt
