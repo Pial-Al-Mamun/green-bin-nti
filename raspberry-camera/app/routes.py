@@ -2,7 +2,6 @@ from fastapi import APIRouter, Response
 from fastapi.responses import StreamingResponse
 from app.stream import gen_frames
 from app.camera import camera
-import sys
 
 router = APIRouter()
 
