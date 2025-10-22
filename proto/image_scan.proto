@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package scan_image_service;
-
-option go_package = "./scan_image";
-
-service ScanImageService {
-    rpc ScanImage() returns
-}
